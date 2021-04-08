@@ -1,0 +1,277 @@
+#app_wrapper{
+    .inner{
+        .hero{
+            .hero_img{
+                position: relative;
+                min-height: 300px;
+                transition: 200ms all linear;
+                &.dark_hero_img{
+                    background: url('../assets/bg-desktop-dark.jpg')no-repeat;
+                    background-size: 100%;
+
+                    @include mq('phone'){
+                        background: url('../assets/bg-mobile-dark.jpg')no-repeat;
+                        background-size: 100%;
+                    }
+                }
+
+                &.light_hero_img{
+                    background: url('../assets/bg-desktop-light.jpg')no-repeat;
+                    background-size: 100%;
+
+                    @include mq('phone'){
+                        background: url('../assets/bg-mobile-light.jpg')no-repeat;
+                        background-size: 100%;
+                    }
+                }
+            }
+        }
+
+        .todo_container{
+            max-width: 38%;
+            margin: 0 auto;
+            position: relative;
+            top: -220px;
+
+            @include mq('phone'){
+                max-width: 90%;
+            }
+
+            .header{
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                h3{
+                    color: var(--light_very_light_gray);
+                    font-weight: $font_bold;
+                    font-size: 35px;
+                    letter-spacing: 10px;
+                    // opacity: 0;
+                }
+
+                .toggle_icon{
+                    cursor: pointer;
+                }
+            }
+
+            .todo_body{
+                margin-top: 40px;
+                @include mq('phone'){
+                    margin-top: 30px;
+                }
+
+                .todo_row{
+                    padding: 8px 20px;
+                    background: var(--dark_very_dark_destaturated_blue);
+                    border-radius: 5px;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+
+                    .check{
+                        padding: 5px;
+                        border-radius: 50%;
+                        display: inline-block;
+                        border: 1px solid var(--dark_very_dark_grayish_blue_2);
+                        margin-right: 20px;
+                        transition: 200ms all linear;
+                        cursor: pointer;
+                        svg{
+                            display: block;
+                            position: relative;
+                            z-index: 2;
+                            opacity: 0;
+                            visibility: hidden;
+                            transition: 200ms all linear;
+                        }
+                        &:hover{
+                            border-color: var(--dark_light_grayish_blue);
+                        }
+                    }
+
+                    input{
+                        background: transparent;
+                        border: none;
+                        outline: none;
+                        width: 80%;
+                        padding: 12px 0;
+                        font-size: $body_font_desk;
+                        color: var(--dark_light_grayish_blue);
+                        font-family: $font_josefin;
+                        transition: 200ms all linear;
+                    }
+                    ::-webkit-input-placeholder { /* Edge */
+                        color: var(--dark_dark_grayish_blue);
+                    }
+                      
+                    :-ms-input-placeholder { /* Internet Explorer 10-11 */
+                        color: var(--dark_dark_grayish_blue);
+                    }
+                      
+                    ::placeholder {
+                        color: var(--dark_dark_grayish_blue);
+                    }
+
+                    .remove_icon{
+                        margin-left: auto;
+                        cursor: pointer;
+                        opacity: 0;
+                        visibility: hidden;
+                    }   
+
+                    .todo_btn_wrapper{
+                        margin-left: auto;
+                        cursor: pointer;
+                        .todo_btn{
+                            border: none;
+                            padding: 5px 10px;
+                            background: var(--bright_blue);
+                            outline: none;
+                            cursor: pointer;
+                            border-radius: 4px;
+                            svg{
+                                path{
+                                    fill: var(--dark_light_grayish_blue);
+                                }
+                            }
+                        }
+                    }
+
+                    &:hover{
+                        .remove_icon{
+                            opacity: 1;
+                            visibility: visible;
+                        }
+                    }
+                }
+
+                .create_todo{
+                    border-radius: 5px;
+                    box-shadow: 0 10px 30px 5px rgba(0,0,0,0.3);
+                }
+                .todo_list{
+                    margin-top: 22px;
+                    background: var(--dark_very_dark_destaturated_blue);
+                    border-radius: 5px;
+                    box-shadow: 0 50px 50px 15px rgba(0,0,0,0.4);
+                    .todo_row{
+                        border-bottom: 1px solid var(--dark_very_dark_grayish_blue_2);
+                        border-bottom-left-radius: 0;
+                        border-bottom-right-radius: 0;
+
+                        &.completed{
+                            .check{
+                                background: var(--check_bg);
+                                svg{
+                                    opacity: 1;
+                                    visibility: visible;
+                                }
+                            }
+                            input{
+                                text-decoration: line-through;
+                                color: var(--dark_very_dark_grayish_blue_1);
+                            }
+                        }
+                    }
+
+                    .list_stats{
+                        padding: 20px;
+                        display: flex;
+                        justify-content: space-between;
+                        font-size: 13px;
+                        color: var(--dark_very_dark_grayish_blue_1);
+                        font-weight: bold;
+                        position: relative;
+
+                        @include mq('phone'){
+                            font-size: 15px;
+                        }
+
+                        .count_txt{
+                            .count{
+                                margin-right: 5px;
+                                color: var(--bright_blue);
+                            }
+                        }
+
+                        .status{
+                            span{
+                                margin-right: 12px;
+                                cursor: pointer;
+                                &:last-child{
+                                    margin-right: 0;
+                                }
+                                &.active{
+                                    color: var(--bright_blue);
+                                    &:hover{
+                                        color: var(--bright_blue);
+                                    }
+                                }
+                                .count{
+                                    color: var(--dark_light_grayish_blue)
+                                }
+                                &:hover{
+                                    color: var(--dark_light_grayish_blue);
+                                }
+                            }
+                        }
+                        .status_xs{
+                            position: absolute;
+                            bottom: -80px;
+                            left: 0;
+                            width: 100%;
+                            z-index: 2;
+                            padding: 20px 0;
+                            background: var(--dark_very_dark_destaturated_blue);
+                            border-radius: 5px;
+                            box-shadow: 0 30px 50px 2px rgba(0,0,0,0.4);
+                            span{
+                                font-size: 15px;
+                            }
+                        }
+
+                        .clear_completed{
+                            cursor: pointer;
+                            &:hover{
+                                color: var(--dark_light_grayish_blue);
+                            }
+                        }
+                    }
+
+                    .list{
+                        .no_active_todo, .no_completed_todo{
+                            color: var(--dark_very_dark_grayish_blue_1);
+                            padding: 70px 0;
+                            display: none;
+                            font-size: 20px;
+                        }
+
+                        &.show_active{
+                            .todo_row{
+                                display: none;
+                                &.active{
+                                    display: flex;
+                                }
+                            }
+                            .no_active_todo.show{
+                                display: block;
+                            }
+                        }
+
+                        &.show_completed{
+                            .todo_row{
+                                display: none;
+                                &.completed{
+                                    display: flex;
+                                }
+                            }
+                            .no_completed_todo.show{
+                                display: block;
+                            }
+                        }
+                    } 
+                }
+            }
+        }
+    }
+}

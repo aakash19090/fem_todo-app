@@ -1,0 +1,490 @@
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap");
+:root {
+  --bright_blue: #3a7bfd;
+  --check_bg: linear-gradient(#57ddff, #c058f3);
+  --light_very_light_gray: #fafafa;
+  --light_very_light_grayish_blue: #e4e5f1;
+  --light_light_grayish_blue: #d2d3db;
+  --light_dark_grayish_blue: #9393a5;
+  --light_very_dark_grayish_blue: #484b6a;
+  --dark_very_dark_blue: #161722;
+  --dark_very_dark_destaturated_blue: #25273c;
+  --dark_light_grayish_blue: #cacde8;
+  --dark_light_grayish_blue_hover: #e4e5f1;
+  --dark_dark_grayish_blue: #777a92;
+  --dark_very_dark_grayish_blue_1: #4d5066;
+  --dark_very_dark_grayish_blue_2: #393a4c;
+}
+
+/* MIXIN : MEDIA QUERIES
+ *    EX : @include mq( 'lap-and-up' ) { CODE }
+ * ------------------------------------------------------------------------- */
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -moz-tap-highlight-color: rgba(0, 0, 0, 0);
+  -ms-tap-highlight-color: rgba(0, 0, 0, 0);
+  -o-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+body {
+  overflow-x: hidden;
+  font-family: "Josefin Sans", sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: var(--dark_very_dark_blue);
+}
+
+@media screen and (max-width: 767px) {
+  body {
+    font-size: 15px;
+  }
+}
+
+img {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Josefin Sans", sans-serif;
+  font-weight: 400;
+}
+
+ul {
+  list-style: none;
+  display: block;
+  margin: 0;
+}
+
+a {
+  outline: none;
+  text-decoration: none;
+  -webkit-transition: all 200ms linear;
+  transition: all 200ms linear;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.text-center {
+  text-align: center !important;
+}
+
+.text-left {
+  text-align: left !important;
+}
+
+.text-right {
+  text-align: right !important;
+}
+
+.v_hide {
+  visibility: hidden !important;
+}
+
+.hide {
+  display: none !important;
+}
+
+@media (max-width: 1024px) {
+  .sm-hide {
+    display: none !important;
+  }
+}
+
+@media (min-width: 1025px) {
+  .sm-show {
+    display: none !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .xs-hide {
+    display: none !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .xs-show {
+    display: none !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .xs-center {
+    text-align: center !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .xs-left {
+    text-align: left !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .xs-right {
+    text-align: right !important;
+  }
+}
+
+@media (max-width: 1024px) {
+  .sm-center {
+    text-align: center !important;
+  }
+}
+
+@media (max-width: 1024px) {
+  .sm-left {
+    text-align: left !important;
+  }
+}
+
+@media (max-width: 1024px) {
+  .sm-right {
+    text-align: right !important;
+  }
+}
+
+.overflow_hidden {
+  overflow: hidden !important;
+}
+
+#app_wrapper .inner .hero .hero_img {
+  position: relative;
+  min-height: 300px;
+  -webkit-transition: 200ms all linear;
+  transition: 200ms all linear;
+}
+
+#app_wrapper .inner .hero .hero_img.dark_hero_img {
+  background: url("../assets/bg-desktop-dark.jpg") no-repeat;
+  background-size: 100%;
+}
+
+@media screen and (max-width: 767px) {
+  #app_wrapper .inner .hero .hero_img.dark_hero_img {
+    background: url("../assets/bg-mobile-dark.jpg") no-repeat;
+    background-size: 100%;
+  }
+}
+
+#app_wrapper .inner .hero .hero_img.light_hero_img {
+  background: url("../assets/bg-desktop-light.jpg") no-repeat;
+  background-size: 100%;
+}
+
+@media screen and (max-width: 767px) {
+  #app_wrapper .inner .hero .hero_img.light_hero_img {
+    background: url("../assets/bg-mobile-light.jpg") no-repeat;
+    background-size: 100%;
+  }
+}
+
+#app_wrapper .inner .todo_container {
+  max-width: 38%;
+  margin: 0 auto;
+  position: relative;
+  top: -220px;
+}
+
+@media screen and (max-width: 767px) {
+  #app_wrapper .inner .todo_container {
+    max-width: 90%;
+  }
+}
+
+#app_wrapper .inner .todo_container .header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+#app_wrapper .inner .todo_container .header h3 {
+  color: var(--light_very_light_gray);
+  font-weight: 700;
+  font-size: 35px;
+  letter-spacing: 10px;
+}
+
+#app_wrapper .inner .todo_container .header .toggle_icon {
+  cursor: pointer;
+}
+
+#app_wrapper .inner .todo_container .todo_body {
+  margin-top: 40px;
+}
+
+@media screen and (max-width: 767px) {
+  #app_wrapper .inner .todo_container .todo_body {
+    margin-top: 30px;
+  }
+}
+
+#app_wrapper .inner .todo_container .todo_body .todo_row {
+  padding: 8px 20px;
+  background: var(--dark_very_dark_destaturated_blue);
+  border-radius: 5px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#app_wrapper .inner .todo_container .todo_body .todo_row .check {
+  padding: 5px;
+  border-radius: 50%;
+  display: inline-block;
+  border: 1px solid var(--dark_very_dark_grayish_blue_2);
+  margin-right: 20px;
+  -webkit-transition: 200ms all linear;
+  transition: 200ms all linear;
+  cursor: pointer;
+}
+
+#app_wrapper .inner .todo_container .todo_body .todo_row .check svg {
+  display: block;
+  position: relative;
+  z-index: 2;
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transition: 200ms all linear;
+  transition: 200ms all linear;
+}
+
+#app_wrapper .inner .todo_container .todo_body .todo_row .check:hover {
+  border-color: var(--dark_light_grayish_blue);
+}
+
+#app_wrapper .inner .todo_container .todo_body .todo_row input {
+  background: transparent;
+  border: none;
+  outline: none;
+  width: 80%;
+  padding: 12px 0;
+  font-size: 18px;
+  color: var(--dark_light_grayish_blue);
+  font-family: "Josefin Sans", sans-serif;
+  -webkit-transition: 200ms all linear;
+  transition: 200ms all linear;
+}
+
+#app_wrapper .inner .todo_container .todo_body .todo_row ::-webkit-input-placeholder {
+  /* Edge */
+  color: var(--dark_dark_grayish_blue);
+}
+
+#app_wrapper .inner .todo_container .todo_body .todo_row :-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: var(--dark_dark_grayish_blue);
+}
+
+#app_wrapper .inner .todo_container .todo_body .todo_row ::-ms-input-placeholder {
+  color: var(--dark_dark_grayish_blue);
+}
+
+#app_wrapper .inner .todo_container .todo_body .todo_row ::placeholder {
+  color: var(--dark_dark_grayish_blue);
+}
+
+#app_wrapper .inner .todo_container .todo_body .todo_row .remove_icon {
+  margin-left: auto;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+}
+
+#app_wrapper .inner .todo_container .todo_body .todo_row .todo_btn_wrapper {
+  margin-left: auto;
+  cursor: pointer;
+}
+
+#app_wrapper .inner .todo_container .todo_body .todo_row .todo_btn_wrapper .todo_btn {
+  border: none;
+  padding: 5px 10px;
+  background: var(--bright_blue);
+  outline: none;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+#app_wrapper .inner .todo_container .todo_body .todo_row .todo_btn_wrapper .todo_btn svg path {
+  fill: var(--dark_light_grayish_blue);
+}
+
+#app_wrapper .inner .todo_container .todo_body .todo_row:hover .remove_icon {
+  opacity: 1;
+  visibility: visible;
+}
+
+#app_wrapper .inner .todo_container .todo_body .create_todo {
+  border-radius: 5px;
+  -webkit-box-shadow: 0 10px 30px 5px rgba(0, 0, 0, 0.3);
+          box-shadow: 0 10px 30px 5px rgba(0, 0, 0, 0.3);
+}
+
+#app_wrapper .inner .todo_container .todo_body .todo_list {
+  margin-top: 22px;
+  background: var(--dark_very_dark_destaturated_blue);
+  border-radius: 5px;
+  -webkit-box-shadow: 0 50px 50px 15px rgba(0, 0, 0, 0.4);
+          box-shadow: 0 50px 50px 15px rgba(0, 0, 0, 0.4);
+}
+
+#app_wrapper .inner .todo_container .todo_body .todo_list .todo_row {
+  border-bottom: 1px solid var(--dark_very_dark_grayish_blue_2);
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+#app_wrapper .inner .todo_container .todo_body .todo_list .todo_row.completed .check {
+  background: var(--check_bg);
+}
+
+#app_wrapper .inner .todo_container .todo_body .todo_list .todo_row.completed .check svg {
+  opacity: 1;
+  visibility: visible;
+}
+
+#app_wrapper .inner .todo_container .todo_body .todo_list .todo_row.completed input {
+  text-decoration: line-through;
+  color: var(--dark_very_dark_grayish_blue_1);
+}
+
+#app_wrapper .inner .todo_container .todo_body .todo_list .list_stats {
+  padding: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  font-size: 13px;
+  color: var(--dark_very_dark_grayish_blue_1);
+  font-weight: bold;
+  position: relative;
+}
+
+@media screen and (max-width: 767px) {
+  #app_wrapper .inner .todo_container .todo_body .todo_list .list_stats {
+    font-size: 15px;
+  }
+}
+
+#app_wrapper .inner .todo_container .todo_body .todo_list .list_stats .count_txt .count {
+  margin-right: 5px;
+  color: var(--bright_blue);
+}
+
+#app_wrapper .inner .todo_container .todo_body .todo_list .list_stats .status span {
+  margin-right: 12px;
+  cursor: pointer;
+}
+
+#app_wrapper .inner .todo_container .todo_body .todo_list .list_stats .status span:last-child {
+  margin-right: 0;
+}
+
+#app_wrapper .inner .todo_container .todo_body .todo_list .list_stats .status span.active {
+  color: var(--bright_blue);
+}
+
+#app_wrapper .inner .todo_container .todo_body .todo_list .list_stats .status span.active:hover {
+  color: var(--bright_blue);
+}
+
+#app_wrapper .inner .todo_container .todo_body .todo_list .list_stats .status span .count {
+  color: var(--dark_light_grayish_blue);
+}
+
+#app_wrapper .inner .todo_container .todo_body .todo_list .list_stats .status span:hover {
+  color: var(--dark_light_grayish_blue);
+}
+
+#app_wrapper .inner .todo_container .todo_body .todo_list .list_stats .status_xs {
+  position: absolute;
+  bottom: -80px;
+  left: 0;
+  width: 100%;
+  z-index: 2;
+  padding: 20px 0;
+  background: var(--dark_very_dark_destaturated_blue);
+  border-radius: 5px;
+  -webkit-box-shadow: 0 30px 50px 2px rgba(0, 0, 0, 0.4);
+          box-shadow: 0 30px 50px 2px rgba(0, 0, 0, 0.4);
+}
+
+#app_wrapper .inner .todo_container .todo_body .todo_list .list_stats .status_xs span {
+  font-size: 15px;
+}
+
+#app_wrapper .inner .todo_container .todo_body .todo_list .list_stats .clear_completed {
+  cursor: pointer;
+}
+
+#app_wrapper .inner .todo_container .todo_body .todo_list .list_stats .clear_completed:hover {
+  color: var(--dark_light_grayish_blue);
+}
+
+#app_wrapper .inner .todo_container .todo_body .todo_list .list .no_active_todo, #app_wrapper .inner .todo_container .todo_body .todo_list .list .no_completed_todo {
+  color: var(--dark_very_dark_grayish_blue_1);
+  padding: 70px 0;
+  display: none;
+  font-size: 20px;
+}
+
+#app_wrapper .inner .todo_container .todo_body .todo_list .list.show_active .todo_row {
+  display: none;
+}
+
+#app_wrapper .inner .todo_container .todo_body .todo_list .list.show_active .todo_row.active {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+#app_wrapper .inner .todo_container .todo_body .todo_list .list.show_active .no_active_todo.show {
+  display: block;
+}
+
+#app_wrapper .inner .todo_container .todo_body .todo_list .list.show_completed .todo_row {
+  display: none;
+}
+
+#app_wrapper .inner .todo_container .todo_body .todo_list .list.show_completed .todo_row.completed {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+#app_wrapper .inner .todo_container .todo_body .todo_list .list.show_completed .no_completed_todo.show {
+  display: block;
+}
+/*# sourceMappingURL=app.css.map */

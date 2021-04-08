@@ -1,0 +1,106 @@
+// Site Width
+$desk_width: 1440px;
+$mob_width: 375px;
+
+// Fonts
+
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap');
+
+$font_josefin: 'Josefin Sans', sans-serif;
+
+$body_font_desk: 18px;
+$body_font_xs: 15px;
+$font_regular: 400;
+$font_bold: 700;
+
+// Color Palatte
+
+:root {
+    // Primary
+    --bright_blue: #3a7bfd;
+    --check_bg: linear-gradient(#57ddff, #c058f3);
+
+    // Light Theme
+    --light_very_light_gray: #fafafa;
+    --light_very_light_grayish_blue: #e4e5f1;
+    --light_light_grayish_blue: #d2d3db;
+    --light_dark_grayish_blue: #9393a5;
+    --light_very_dark_grayish_blue: #484b6a;
+
+    // Dark Theme
+    --dark_very_dark_blue: #161722;
+    --dark_very_dark_destaturated_blue: #25273c;
+    --dark_light_grayish_blue: #cacde8;
+    --dark_light_grayish_blue_hover: #e4e5f1;
+    --dark_dark_grayish_blue: #777a92;
+    --dark_very_dark_grayish_blue_1: #4d5066;
+    --dark_very_dark_grayish_blue_2: #393a4c;
+}
+
+/* MIXIN : MEDIA QUERIES
+ *    EX : @include mq( 'lap-and-up' ) { CODE }
+ * ------------------------------------------------------------------------- */
+$phone: "screen and (max-width: 767px)";
+$tablet: "screen and (min-width: 768px) and (max-width: 1024px)";
+$phone-and-tablet: "screen and (max-width: 1024px)";
+$tablet-and-up: "screen and (min-width: 768px)";
+$tablet-portrait: "screen and (min-width: 768px) and (max-width: 959px)";
+$tablet-landscape: "screen and (min-width: 960px) and (max-width: 1024px)";
+$lap: "screen and (min-width: 1025px) and (max-width: 1219px)";
+$lap-and-up: "screen and (min-width: 1025px)";
+$desk-and-up: "screen and (min-width: 1220px)";
+$lap-and-desk: "screen and (min-width: 1025px) and (max-width: 1679px)";
+$wide-and-up: "screen and (min-width: 1680px)";
+$retina: "(-webkit-min-device-pixel-ratio: 2),(min-resolution: 192dpi)";
+
+@mixin mq($alias) {
+    @if $alias == "phone" {
+        @media #{$phone} {
+            @content;
+        }
+    } @else if $alias == "tablet" {
+        @media #{$tablet} {
+            @content;
+        }
+    } @else if $alias == "phone-and-tablet" {
+        @media #{$phone-and-tablet} {
+            @content;
+        }
+    } @else if $alias == "tablet-and-up" {
+        @media #{$tablet-and-up} {
+            @content;
+        }
+    } @else if $alias == "tablet-portrait" {
+        @media #{$tablet-portrait} {
+            @content;
+        }
+    } @else if $alias == "tablet-landscape" {
+        @media #{$tablet-landscape} {
+            @content;
+        }
+    } @else if $alias == "lap" {
+        @media #{$lap} {
+            @content;
+        }
+    } @else if $alias == "lap-and-up" {
+        @media #{$lap-and-up} {
+            @content;
+        }
+    } @else if $alias == "desk-and-up" {
+        @media #{$desk-and-up} {
+            @content;
+        }
+    } @else if $alias == "lap-and-desk" {
+        @media #{$lap-and-desk} {
+            @content;
+        }
+    } @else if $alias == "wide-and-up" {
+        @media #{$wide-and-up} {
+            @content;
+        }
+    } @else if $alias == "retina" {
+        @media #{$retina} {
+            @content;
+        }
+    }
+}
