@@ -5,25 +5,15 @@
                 position: relative;
                 min-height: 300px;
                 transition: 200ms all linear;
-                &.dark_hero_img{
-                    background: url('../assets/bg-desktop-dark.jpg')no-repeat;
-                    background-size: 100%;
 
-                    @include mq('phone'){
-                        background: url('../assets/bg-mobile-dark.jpg')no-repeat;
-                        background-size: 100%;
-                    }
+                background: url('../assets/bg-desktop-dark.jpg')no-repeat;
+                background-size: 100%;
+
+                @include mq('phone'){
+                    background: url('../assets/bg-mobile-dark.jpg')no-repeat;
+                    background-size: cover;
                 }
 
-                &.light_hero_img{
-                    background: url('../assets/bg-desktop-light.jpg')no-repeat;
-                    background-size: 100%;
-
-                    @include mq('phone'){
-                        background: url('../assets/bg-mobile-light.jpg')no-repeat;
-                        background-size: 100%;
-                    }
-                }
             }
         }
 
@@ -47,10 +37,61 @@
                     font-size: 35px;
                     letter-spacing: 10px;
                     // opacity: 0;
+                    @include mq('phone'){
+                        font-size: 30px;
+                    }
                 }
 
                 .toggle_icon{
                     cursor: pointer;
+                    position: relative;
+                    
+                    svg{
+                        transition: 200ms all linear;
+                        margin-left: 30px;
+                        path{
+                            transition: 200ms all linear;
+                        }
+                    }
+
+                    .dark_mode_svg{
+                        position: absolute;
+                        top: 0;
+                        right: 0;
+                        opacity: 0;
+                        visibility: hidden;
+                    }
+
+                    .sound_svg{
+                        opacity: 0;
+                        visibility: hidden;
+
+                        &.active{
+                            opacity: 1;
+                            visibility: visible;
+                        }
+                        &.unmute_svg{
+                            position: absolute;
+                            left: 0;
+                        }
+                    }
+
+                    &.light_mode{
+                        .sound_svg{
+                            path{
+                                fill: #161722;
+                            }
+                        }
+                        .light_mode_svg{
+                            opacity: 0;
+                            visibility: hidden;
+                        }
+                        .dark_mode_svg{
+                            opacity: 1;
+                            visibility: visible;
+                        }
+                    }
+
                 }
             }
 
@@ -237,41 +278,75 @@
                             }
                         }
                     }
-
-                    .list{
-                        .no_active_todo, .no_completed_todo{
-                            color: var(--dark_very_dark_grayish_blue_1);
-                            padding: 70px 0;
+                    .no_active_todo, .no_completed_todo{
+                        color: var(--dark_very_dark_grayish_blue_1);
+                        padding: 70px 0;
+                        display: none;
+                        font-size: 20px;
+                    }
+                    &.show_active{
+                        .todo_row{
                             display: none;
-                            font-size: 20px;
+                            &.active{
+                                display: flex;
+                            }
                         }
+                        .no_active_todo.show{
+                            display: block;
+                        }
+                    }
 
-                        &.show_active{
-                            .todo_row{
-                                display: none;
-                                &.active{
-                                    display: flex;
-                                }
-                            }
-                            .no_active_todo.show{
-                                display: block;
+                    &.show_completed{
+                        .todo_row{
+                            display: none;
+                            &.completed{
+                                display: flex;
                             }
                         }
+                        .no_completed_todo.show{
+                            display: block;
+                        }
+                    }
 
-                        &.show_completed{
-                            .todo_row{
-                                display: none;
-                                &.completed{
-                                    display: flex;
-                                }
-                            }
-                            .no_completed_todo.show{
-                                display: block;
-                            }
-                        }
-                    } 
+                }
+            }
+
+            .todo_footer{
+                opacity: 0;
+                visibility: hidden;
+                margin-top: 100px;
+                .drag_txt{
+                    color: var(--dark_dark_grayish_blue);
+                    font-size: 14px;
                 }
             }
         }
     }
 }
+
+body.light_mode{
+    #app_wrapper .inner{
+        .hero .hero_img{
+            background: url('../assets/bg-desktop-light.jpg')no-repeat;
+            background-size: 100%;
+        
+            @include mq('phone'){
+                background: url('../assets/bg-mobile-light.jpg')no-repeat;
+                background-size: cover;
+            }
+        }
+        .todo_container{
+            .todo_body{
+                .create_todo{
+                    box-shadow: 0 10px 30px 5px rgba(0,0,0,0.3);
+                    .todo_row .todo_btn_wrapper .todo_btn{
+                        background: #d2d3db;
+                    }
+                }
+                .todo_list{
+                    box-shadow: 0 20px 60px 15px rgba(0,0,0,0.2);
+                }
+            }
+        }
+    } 
+} 

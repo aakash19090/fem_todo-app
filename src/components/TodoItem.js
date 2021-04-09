@@ -1,7 +1,12 @@
 import React, { useState } from "react";
 import uniqid from "uniqid";
+import useSound from 'use-sound';
+import AddTodoSound from '../sounds/plunger.mp3';
+import RemoveTodoSound from '../sounds/rising-pops.mp3';
+import MarkTodoSound from '../sounds/pop-down.mp3';
 
 const TodoItem = ({
+    soundState,
     isCreating,
     handleTodo,
     todoItemId,
@@ -12,6 +17,24 @@ const TodoItem = ({
     todoStatus,
     todoMarkDone
 }) => {
+
+    const [addTodoSound] = useSound(AddTodoSound,{
+        // `interrupt` ensures that if the sound starts again before it's
+        // ended, it will truncate it. Otherwise, the sound can overlap.
+        interrupt: true,
+    });
+
+    const [removeTodoSound] = useSound(RemoveTodoSound,{
+        // `interrupt` ensures that if the sound starts again before it's
+        // ended, it will truncate it. Otherwise, the sound can overlap.
+        interrupt: true,
+    });
+
+    const [markTodoSound] = useSound(MarkTodoSound,{
+        // `interrupt` ensures that if the sound starts again before it's
+        // ended, it will truncate it. Otherwise, the sound can overlap.
+        interrupt: true,
+    });
     
 
     const [inputVal, setInputVal] = useState("");
@@ -19,9 +42,13 @@ const TodoItem = ({
     const [editedValue, setEditedValue] = useState('');
 
     // ? ON CREATE TODO
-    const handleCreateTodo = () => {
+    const handleCreateTodo = (event) => {
+        event.preventDefault();
         const todoId = uniqid(); // ? Create Todo ID
-        inputVal.trim() && handleTodo(todoId, inputVal);
+        if(inputVal.trim() !== ''){
+            handleTodo(todoId, inputVal);
+            soundState && addTodoSound();
+        }
         setInputVal("");
     };
 
@@ -41,13 +68,19 @@ const TodoItem = ({
     // ? ON REMOVE TODO
     const deleteTodo = (e) => {
         const deleteTodoId = e.target.closest('.todo_row').getAttribute('id');
-        deleteTodoId && todoDelete(deleteTodoId);
+        if(deleteTodoId !== ''){
+            todoDelete(deleteTodoId)
+            soundState && removeTodoSound();
+        }
     }
 
     // ? ON MARK TODO DONE
     const markTodo = (e) => {
         const markTodoId = e.target.closest('.todo_row').getAttribute('id');
-        markTodoId && todoMarkDone(markTodoId)
+        if(markTodoId !== ''){
+            todoMarkDone(markTodoId);
+            soundState && markTodoSound();
+        }
     }
 
     return (
@@ -104,7 +137,7 @@ const TodoItem = ({
                 <div className="todo_btn_wrapper">
                     <button
                         title="Create Todo"
-                        type="button"
+                        type="submit"
                         className="todo_btn"
                         onClick={handleCreateTodo}
                     >

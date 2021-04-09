@@ -1,10 +1,9 @@
-import React, { useState } from 'react'
+import React from 'react'
 import './scss/app.css';
 import Todo from './components/Todo'
 
 const App = () => {
 
-    const [isDarkMode, setIsDarkMode] = useState(true);
 
     return (
         <div id='app_wrapper'>
@@ -12,7 +11,7 @@ const App = () => {
 
                 {/* Hero Image */}
                 <div className='hero'>
-                    <div className={`hero_img ${isDarkMode ? 'dark_hero_img' : 'light_hero_img'}`} ></div>
+                    <div className='hero_img' ></div>
                 </div>
 
                 {/* Todo Container */}

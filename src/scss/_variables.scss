@@ -37,6 +37,14 @@ $font_bold: 700;
     --dark_very_dark_grayish_blue_2: #393a4c;
 }
 
+body.light_mode{
+    --light_very_light_gray :#161722;
+    --dark_very_dark_blue : #fafafa;
+    --dark_very_dark_destaturated_blue : #fafafa;
+    --dark_light_grayish_blue :#161722;
+    --dark_very_dark_grayish_blue_2: #d2d3db;
+}
+
 /* MIXIN : MEDIA QUERIES
  *    EX : @include mq( 'lap-and-up' ) { CODE }
  * ------------------------------------------------------------------------- */
