@@ -11,11 +11,12 @@ class Todo extends Component {
     constructor(props) {
         super(props);
         
-        const storageItems = JSON.parse(localStorage.getItem("todos")).todos // ? First Check Items in LocalStorage
+        // const checkTodosFromStorage = JSON.parse(localStorage.getItem("todos")).todos ? JSON.parse(localStorage.getItem("todos")).todos : []
+        const storageItems = localStorage.getItem("todos") ? JSON.parse(localStorage.getItem("todos")).todos : [] // ? First Check Items in LocalStorage
         const storageSound = JSON.parse(localStorage.getItem("todos")).sound
 
         this.state = {
-            todos: storageItems ? storageItems : [],
+            todos: storageItems,
             show: 'all',
             darkMode: true,
             sound: storageSound
