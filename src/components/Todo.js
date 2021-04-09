@@ -11,7 +11,6 @@ class Todo extends Component {
     constructor(props) {
         super(props);
         
-        // const checkTodosFromStorage = JSON.parse(localStorage.getItem("todos")).todos ? JSON.parse(localStorage.getItem("todos")).todos : []
         const storageItems = localStorage.getItem("todos") ? JSON.parse(localStorage.getItem("todos")).todos : [] // ? First Check Items in LocalStorage
         const storageSound = JSON.parse(localStorage.getItem("todos")).sound
 
