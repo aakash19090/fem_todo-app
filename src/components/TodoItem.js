@@ -62,7 +62,6 @@ const TodoItem = ({
                     />
                 </svg>
             </span>
-
             {
                 isCreating ? (
                     <input
