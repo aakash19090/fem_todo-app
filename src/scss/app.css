@@ -537,14 +537,16 @@ a {
 }
 
 #app_wrapper .inner .todo_container .todo_footer {
-  opacity: 0;
-  visibility: hidden;
   margin-top: 100px;
 }
 
 #app_wrapper .inner .todo_container .todo_footer .drag_txt {
   color: var(--dark_dark_grayish_blue);
   font-size: 14px;
+}
+
+#app_wrapper .inner .todo_container .todo_footer .drag_txt a {
+  color: var(--bright_blue);
 }
 
 body.light_mode #app_wrapper .inner .hero .hero_img {

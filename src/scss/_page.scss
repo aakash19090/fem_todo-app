@@ -312,12 +312,13 @@
             }
 
             .todo_footer{
-                opacity: 0;
-                visibility: hidden;
                 margin-top: 100px;
                 .drag_txt{
                     color: var(--dark_dark_grayish_blue);
                     font-size: 14px;
+                    a{
+                        color: var(--bright_blue);
+                    }
                 }
             }
         }

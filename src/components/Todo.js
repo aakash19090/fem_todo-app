@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import TodoItem from "../components/TodoItem";
-import { ReactSortable } from "react-sortablejs";
-import { Sortable, MultiDrag, Swap} from "sortablejs"
+// import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
 import Mute from '../components/Mute'
 import Unmute from '../components/Unmute'
@@ -205,12 +204,8 @@ class Todo extends Component {
                         {
                             todoList.length > 0 ? (
                                 <div className={`todo_list show_${currShowStatus}`}>
-                                    <ReactSortable
-                                        className='list'
-                                        list={todoList}
-                                        tag="div"
-                                        setList={(todoList) => undefined}
-                                    >
+                                    
+                                    <div className='list' list={todoList} >
                                         
                                         {todoList.map((todo) => (
                                             <TodoItem
@@ -241,7 +236,7 @@ class Todo extends Component {
                                             />
                                         ))}
                                     
-                                    </ReactSortable>
+                                    </div>
 
                                     <div className={`no_active_todo text-center ${activeCount === 0 ? "show" : ""}`}>
                                         <p>No active todo...</p>
@@ -376,7 +371,7 @@ class Todo extends Component {
                 </div>
 
                 <div className='todo_footer text-center'>
-                    <p className='drag_txt'>Drag &amp; Drop to reorder list</p>
+                    <p className='drag_txt'>Developed By: <a href="https://github.com/aakash19090" target='_blank'>AKASH SHARMA</a> </p>
                 </div>
             </>
         );
