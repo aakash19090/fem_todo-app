@@ -1,5 +1,10 @@
 #app_wrapper{
+    display: flex;
+    flex-direction: column;
+    min-height: 95vh;
+    justify-content: space-between;
     .inner{
+        width: 100%;
         .hero{
             .hero_img{
                 position: relative;
@@ -311,15 +316,18 @@
                 }
             }
 
-            .todo_footer{
-                margin-top: 100px;
-                .drag_txt{
-                    color: var(--dark_dark_grayish_blue);
-                    font-size: 14px;
-                    a{
-                        color: var(--bright_blue);
-                    }
-                }
+            
+        }
+        
+    }
+    .todo_footer{
+        margin-bottom: 30px;
+        width: 100%;
+        .drag_txt{
+            color: var(--dark_dark_grayish_blue);
+            font-size: 14px;
+            a{
+                color: var(--bright_blue);
             }
         }
     }
