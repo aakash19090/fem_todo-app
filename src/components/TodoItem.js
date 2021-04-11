@@ -5,6 +5,7 @@ import AddTodoSound from '../sounds/plunger.mp3';
 import RemoveTodoSound from '../sounds/rising-pops.mp3';
 import MarkTodoSound from '../sounds/pop-down.mp3';
 
+
 const TodoItem = ({
     soundState,
     isCreating,
@@ -67,9 +68,10 @@ const TodoItem = ({
 
     // ? ON REMOVE TODO
     const deleteTodo = (e) => {
+        const deletedTodo = e.target.closest('.todo_row');
         const deleteTodoId = e.target.closest('.todo_row').getAttribute('id');
         if(deleteTodoId !== ''){
-            todoDelete(deleteTodoId)
+            todoDelete(deleteTodoId, deletedTodo)
             soundState && removeTodoSound();
         }
     }

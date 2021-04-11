@@ -113,6 +113,7 @@
                     display: flex;
                     justify-content: space-between;
                     align-items: center;
+                    
 
                     .check{
                         padding: 5px;
@@ -145,6 +146,7 @@
                         color: var(--dark_light_grayish_blue);
                         font-family: $font_josefin;
                         transition: 200ms all linear;
+                        cursor: pointer;
                     }
                     ::-webkit-input-placeholder { /* Edge */
                         color: var(--dark_dark_grayish_blue);
@@ -204,6 +206,7 @@
                         border-bottom: 1px solid var(--dark_very_dark_grayish_blue_2);
                         border-bottom-left-radius: 0;
                         border-bottom-right-radius: 0;
+                        cursor: pointer;
 
                         &.completed{
                             .check{
@@ -316,6 +319,13 @@
                 }
             }
 
+            .todo_inner_footer{
+                margin-top: 100px;
+                @include mq('phone'){
+                    margin-top: 150px;
+                }
+            }
+
             
         }
         
@@ -323,12 +333,12 @@
     .todo_footer{
         margin-bottom: 30px;
         width: 100%;
-        .drag_txt{
-            color: var(--dark_dark_grayish_blue);
-            font-size: 14px;
-            a{
-                color: var(--bright_blue);
-            }
+    }
+    .drag_txt{
+        color: var(--dark_dark_grayish_blue);
+        font-size: 14px;
+        a{
+            color: var(--bright_blue);
         }
     }
 }

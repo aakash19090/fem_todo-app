@@ -22,9 +22,10 @@ const App = () => {
 
 
             </div>
+
             <div className='todo_footer text-center'>
-                    <p className='drag_txt'>Developed By: <a href="https://github.com/aakash19090" target='_blank'>AKASH SHARMA</a> </p>
-                </div>
+                <p className='drag_txt'>Developed By: <a href="https://github.com/aakash19090" rel="noreferrer" target='_blank'>AKASH SHARMA</a> </p>
+            </div>
         </div>
     )
 }

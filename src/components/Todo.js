@@ -1,12 +1,17 @@
 import React, { Component } from "react";
 import TodoItem from "../components/TodoItem";
 // import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import { ReactSortable } from "react-sortablejs";
 
 import Mute from '../components/Mute'
 import Unmute from '../components/Unmute'
 import Darkmode from '../components/Darkmode'
 import LightMode from '../components/LightMode'
-class Todo extends Component {
+
+interface BasicClassState { // ? Added for ReactSortable for Drag & Drop
+    todos: { todoId: String; todoVal: String, active: Boolean }[];
+}
+class Todo extends Component <{}, BasicClassState>{
     constructor(props) {
         super(props);
         
@@ -19,6 +24,7 @@ class Todo extends Component {
             darkMode: true,
             sound: storageSound
         };
+
     }
 
 
@@ -51,7 +57,10 @@ class Todo extends Component {
         let updateTodoIndex = currTodos.findIndex(
             (todo) => todo.todoId === editedTodoId
         ); // ? Find index of todo from state to update
-        todoObj = { todoId: editedTodoId, todoVal: editedVal, active: true };
+
+        const editedTodoStatus = currTodos[updateTodoIndex].active
+
+        todoObj = { todoId: editedTodoId, todoVal: editedVal, active: editedTodoStatus };
 
         updateTodoIndex !== -1 &&
             (currTodos[updateTodoIndex] = todoObj); // ? Update todo at that index
@@ -63,7 +72,6 @@ class Todo extends Component {
         () => this.updateLocalStorage()
         );
     };
-
 
     // ? HANDLE DELETE TODO
     handleDeleteTodo = (deletedTodoId) => {
@@ -159,7 +167,17 @@ class Todo extends Component {
         )
     }
 
+
+    handleDrag = (newState) => {
+        this.setState({
+            todos: newState
+        },
+        () => this.updateLocalStorage()
+        )
+    }
+
     render() {
+        
         const todoList = this.state.todos;
         const currShowStatus = this.state.show;
         const isSoundActive = this.state.sound;
@@ -205,36 +223,27 @@ class Todo extends Component {
                             todoList.length > 0 ? (
                                 <div className={`todo_list show_${currShowStatus}`}>
                                     
-                                    <div className='list' list={todoList} >
-                                        
-                                        {todoList.map((todo) => (
-                                            <TodoItem
-                                                soundState={isSoundActive}
-                                                isCreating={false}
-                                                todoItemId={todo.todoId}
-                                                todoValue={todo.todoVal}
-                                                todoTotal={todoList.length}
-                                                todoEdit={(
-                                                    editedTodoId,
-                                                    editedVal
-                                                ) =>
-                                                    this.handleEditTodo(
-                                                        editedTodoId,
-                                                        editedVal
-                                                    )
-                                                }
-                                                todoDelete={(deletedTodoId) =>
-                                                    this.handleDeleteTodo(
-                                                        deletedTodoId
-                                                    )
-                                                }
-                                                todoStatus={todo.active}
-                                                todoMarkDone={(markTodoId) =>
-                                                    this.markTodoDone(markTodoId)
-                                                }
-                                                key={todo.todoId}
-                                            />
-                                        ))}
+                                    <div className='list'>
+                                        <ReactSortable
+                                            list={this.state.todos}
+                                            setList={(newState) => this.handleDrag(newState)}
+                                        >
+                                            {todoList.map((todo) => (
+                                                <TodoItem
+                                                    
+                                                    soundState={isSoundActive}
+                                                    isCreating={false}
+                                                    todoItemId={todo.todoId}
+                                                    todoValue={todo.todoVal}
+                                                    todoTotal={todoList.length}
+                                                    todoEdit={(editedTodoId,editedVal) => this.handleEditTodo( editedTodoId,editedVal)}
+                                                    todoDelete={(deletedTodoId, deletedTodo) => this.handleDeleteTodo(deletedTodoId, deletedTodo) }
+                                                    todoStatus={todo.active}
+                                                    todoMarkDone={(markTodoId) => this.markTodoDone(markTodoId)}
+                                                    key={todo.todoId}
+                                                />
+                                            ))}
+                                        </ReactSortable>
                                     
                                     </div>
 
@@ -252,33 +261,22 @@ class Todo extends Component {
                                             <span className="count">
                                                 {todoList.length}
                                             </span>
-                                            <span className="txt">Items Left</span>
+                                            <span className="txt">{ todoList.length == 1 ? ('Item'): ('Items') } Left</span>
                                         </div>
 
                                         <div className="status xs-hide">
                                             <span
                                                 id="all"
-                                                className={`${
-                                                    currShowStatus === "all"
-                                                        ? "active"
-                                                        : ""
-                                                }`}
-                                                onClick={(e) =>
-                                                    this.changeStatus("all", e)
-                                                }
+                                                className={`${currShowStatus === "all" ? "active" : ""}`}
+                                                onClick={(e) => this.changeStatus("all", e) }
                                             >
                                                 All{" "}
                                             </span>
+
                                             <span
                                                 id="active"
-                                                className={`${
-                                                    currShowStatus === "active"
-                                                        ? "active"
-                                                        : ""
-                                                }`}
-                                                onClick={(e) =>
-                                                    this.changeStatus("active", e)
-                                                }
+                                                className={`${currShowStatus === "active" ? "active" : "" }`}
+                                                onClick={(e) => this.changeStatus("active", e)}
                                             >
                                                 Active{" "}
                                                 <span className="count">
@@ -287,17 +285,8 @@ class Todo extends Component {
                                             </span>
                                             <span
                                                 id="completed"
-                                                className={`${
-                                                    currShowStatus === "completed"
-                                                        ? "active"
-                                                        : ""
-                                                }`}
-                                                onClick={(e) =>
-                                                    this.changeStatus(
-                                                        "completed",
-                                                        e
-                                                    )
-                                                }
+                                                className={`${currShowStatus === "completed" ? "active" : ""}`}
+                                                onClick={(e) => this.changeStatus("completed",e)}
                                             >
                                                 Completed{" "}
                                                 <span className="count">
@@ -309,27 +298,15 @@ class Todo extends Component {
                                         <div className="status status_xs xs-show text-center">
                                             <span
                                                 id="all"
-                                                className={`${
-                                                    currShowStatus === "all"
-                                                        ? "active"
-                                                        : ""
-                                                }`}
-                                                onClick={(e) =>
-                                                    this.changeStatus("all", e)
-                                                }
+                                                className={`${currShowStatus === "all"? "active": ""}`}
+                                                onClick={(e) =>this.changeStatus("all", e)}
                                             >
                                                 All{" "}
                                             </span>
                                             <span
                                                 id="active"
-                                                className={`${
-                                                    currShowStatus === "active"
-                                                        ? "active"
-                                                        : ""
-                                                }`}
-                                                onClick={(e) =>
-                                                    this.changeStatus("active", e)
-                                                }
+                                                className={`${currShowStatus === "active" ? "active" : ""}`}
+                                                onClick={(e) => this.changeStatus("active", e) }
                                             >
                                                 Active{" "}
                                                 <span className="count">
@@ -338,17 +315,8 @@ class Todo extends Component {
                                             </span>
                                             <span
                                                 id="completed"
-                                                className={`${
-                                                    currShowStatus === "completed"
-                                                        ? "active"
-                                                        : ""
-                                                }`}
-                                                onClick={(e) =>
-                                                    this.changeStatus(
-                                                        "completed",
-                                                        e
-                                                    )
-                                                }
+                                                className={`${ currShowStatus === "completed" ? "active" : ""}`}
+                                                onClick={(e) => this.changeStatus("completed",e)}
                                             >
                                                 Completed{" "}
                                                 <span className="count">
@@ -369,6 +337,14 @@ class Todo extends Component {
                         }
                     </form>
                 </div>
+
+                {
+                    todoList.length > 0 ? (
+                        <div className='todo_inner_footer text-center'>
+                            <p className='drag_txt '>Drag &amp; Drop to reorder list</p>
+                        </div>
+                    ) : null
+                }
 
             </>
         );

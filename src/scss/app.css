@@ -360,6 +360,7 @@ a {
   font-family: "Josefin Sans", sans-serif;
   -webkit-transition: 200ms all linear;
   transition: 200ms all linear;
+  cursor: pointer;
 }
 
 #app_wrapper .inner .todo_container .todo_body .todo_row ::-webkit-input-placeholder {
@@ -428,6 +429,7 @@ a {
   border-bottom: 1px solid var(--dark_very_dark_grayish_blue_2);
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
+  cursor: pointer;
 }
 
 #app_wrapper .inner .todo_container .todo_body .todo_list .todo_row.completed .check {
@@ -554,17 +556,27 @@ a {
   display: block;
 }
 
+#app_wrapper .inner .todo_container .todo_inner_footer {
+  margin-top: 100px;
+}
+
+@media screen and (max-width: 767px) {
+  #app_wrapper .inner .todo_container .todo_inner_footer {
+    margin-top: 150px;
+  }
+}
+
 #app_wrapper .todo_footer {
   margin-bottom: 30px;
   width: 100%;
 }
 
-#app_wrapper .todo_footer .drag_txt {
+#app_wrapper .drag_txt {
   color: var(--dark_dark_grayish_blue);
   font-size: 14px;
 }
 
-#app_wrapper .todo_footer .drag_txt a {
+#app_wrapper .drag_txt a {
   color: var(--bright_blue);
 }
 
