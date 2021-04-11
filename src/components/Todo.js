@@ -346,6 +346,17 @@ class Todo extends Component <{}, BasicClassState>{
                     ) : null
                 }
 
+                {/* <div className='todo_modal'>
+                    <div className='modal_wrapper text-center'>
+                        <h3 className='modal_txt'>Are you sure to clear all completed Todos ?</h3>
+                        <div className='btn_div text-center'>
+                            <button type='button clear_btn'>Yes</button>
+                            <button type='button cancel_btn'>Cancel</button>
+                        </div>
+                    </div>
+                </div> */}
+
+
             </>
         );
     }

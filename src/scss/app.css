@@ -255,11 +255,17 @@ a {
   -webkit-transition: 200ms all linear;
   transition: 200ms all linear;
   margin-left: 30px;
+  width: 27px;
 }
 
 #app_wrapper .inner .todo_container .header .toggle_icon svg path {
   -webkit-transition: 200ms all linear;
   transition: 200ms all linear;
+}
+
+#app_wrapper .inner .todo_container .header .toggle_icon svg.mute_svg {
+  position: relative;
+  top: -2px;
 }
 
 #app_wrapper .inner .todo_container .header .toggle_icon .dark_mode_svg {
@@ -580,6 +586,71 @@ a {
   color: var(--bright_blue);
 }
 
+.todo_modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  bottom: 0;
+  z-index: 3;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  background: rgba(0, 0, 0, 0.6);
+  -webkit-transition: 200ms all linear;
+  transition: 200ms all linear;
+}
+
+.todo_modal .modal_wrapper {
+  margin: 0 auto;
+  max-width: 40%;
+  width: 100%;
+  padding: 30px;
+  background: var(--dark_very_dark_destaturated_blue);
+  border-radius: 10px;
+}
+
+.todo_modal .modal_wrapper h3 {
+  font-size: 22px;
+  color: var(--light_very_light_gray);
+  padding: 20px 0 50px;
+  line-height: 32px;
+}
+
+.todo_modal .modal_wrapper .btn_div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.todo_modal .modal_wrapper .btn_div button {
+  outline: none;
+  width: 150px;
+  margin: 0 15px;
+  padding: 10px;
+  font-size: 15px;
+  font-weight: bold;
+  border: none;
+  color: var(--light_very_light_gray);
+  background: var(--bright_blue);
+  border-radius: 30px;
+}
+
 body.light_mode #app_wrapper .inner .hero .hero_img {
   background: url("../assets/bg-desktop-light.jpg") no-repeat;
   background-size: 100%;
@@ -604,5 +675,20 @@ body.light_mode #app_wrapper .inner .todo_container .todo_body .create_todo .tod
 body.light_mode #app_wrapper .inner .todo_container .todo_body .todo_list {
   -webkit-box-shadow: 0 20px 60px 15px rgba(0, 0, 0, 0.2);
           box-shadow: 0 20px 60px 15px rgba(0, 0, 0, 0.2);
+}
+
+body.show_modal #app_wrapper .hero {
+  -webkit-filter: blur(5px);
+          filter: blur(5px);
+}
+
+body.show_modal #app_wrapper .inner .todo_container .header, body.show_modal #app_wrapper .inner .todo_container .todo_body, body.show_modal #app_wrapper .inner .todo_container .todo_inner_footer {
+  -webkit-filter: blur(5px);
+          filter: blur(5px);
+}
+
+body.show_modal .todo_modal {
+  opacity: 1;
+  visibility: visible;
 }
 /*# sourceMappingURL=app.css.map */
